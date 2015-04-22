@@ -10,13 +10,15 @@ android:
 env:
     - TERM=dumb
 
-# Emulator Management: Create, Start and Wait
 before_script:
+  - cd examples/android/android-studio
   - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
-  - emulator -avd test -skin 480x800 -dpi-device 240 -no-audio -no-window &
+  - emulator -avd test -skin 480x800 -dpi-device 240 -no-boot-anim -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82
-  - cd examples/android/android-studio
+  - adb install -r android_emulator_hacks-debug.apk
+  - adb shell pm grant no.finn.android_emulator_hacks android.permission.SET_ANIMATION_SCALE
+  - adb shell am start -n no.finn.android_emulator_hacks/no.finn.android_emulator_hacks.HackActivity
 
 script: for subdir in $(ls -d */); do cd $subdir && ./gradlew connectedCheck && cd .. || cd .. && gradle_failed=1; done && expr ${gradle_failed?0} = 0
 
