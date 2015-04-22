@@ -3,8 +3,7 @@ language: android
 android:
   components:
     - extra-android-m2repository
-    - build-tools-20.0.0
-    - android-21
+    - build-tools-22.0.0
     - android-22
     - sys-img-armeabi-v7a-android-21
 
@@ -14,7 +13,7 @@ env:
 # Emulator Management: Create, Start and Wait
 before_script:
   - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
-  - emulator -avd test -skin 480x800 -no-audio -no-window &
+  - emulator -avd test -skin 480x800 -dpi-device 240 -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82
   - cd examples/android/android-studio
