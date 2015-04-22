@@ -4,6 +4,7 @@ android:
   components:
     - extra-android-m2repository
     - build-tools-20.0.0
+    - build-tools-22.0.0
     - android-21
     - android-22
     - sys-img-armeabi-v7a-android-21
@@ -11,7 +12,6 @@ android:
 env:
     - TERM=dumb
 
-# Emulator Management: Create, Start and Wait
 before_script:
   - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
   - emulator -avd test -skin 480x800 -no-audio -no-window &
