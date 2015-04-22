@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/cucumber/cucumber-jvm.png)](http://travis-ci.org/cucumber/cucumber-jvm)
+[![Build Status](https://secure.travis-ci.org/cucumber/cucumber-jvm.png?branch=android-gradle)](http://travis-ci.org/cucumber/cucumber-jvm)
 
 Cucumber-JVM is a pure Java implementation of Cucumber that supports the [most popular programming languages](https://cukes.info/docs/reference/jvm#running) for the JVM.
 
