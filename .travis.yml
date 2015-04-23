@@ -19,7 +19,7 @@ before_script:
   - adb shell input keyevent 82
   - cd examples/android/android-studio
 
-script: for subdir in $(ls -d */); do cd $subdir && ./gradlew connectedCheck && cd .. || cd .. && gradle_failed=1; done && expr ${gradle_failed?0} = 0
+script: for subdir in $(ls -d */); do cd $subdir && (./gradlew connectedCheck || exit 1) && cd ..; done
 
 branches:
   only:
