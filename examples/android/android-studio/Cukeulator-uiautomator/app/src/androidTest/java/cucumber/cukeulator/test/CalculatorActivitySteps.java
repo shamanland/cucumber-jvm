@@ -80,7 +80,7 @@ public class CalculatorActivitySteps extends InstrumentationTestCase {
         assertTrue(d <= 9);
 
         UiObject button = mDevice.findObject(new UiSelector().resourceId(id("btn_d_" + d)));
-        assertEquals(button.getText(), String.valueOf(d));
+        assertEquals(String.valueOf(d), button.getText());
 
         button.click();
     }
@@ -113,14 +113,20 @@ public class CalculatorActivitySteps extends InstrumentationTestCase {
         assertNotNull(id);
 
         UiObject button = mDevice.findObject(new UiSelector().resourceId(id(id)));
-        assertEquals(button.getText(), String.valueOf(op));
+        assertEquals(String.valueOf(op), button.getText());
 
         button.click();
+
+        try {
+            Thread.sleep(500);
+        } catch (Throwable ex) {
+            // ignore
+        }
     }
 
     @Then("^I should see (\\S+) on the display$")
     public void I_should_see_s_on_the_display(final String s) throws UiObjectNotFoundException {
         UiObject result = mDevice.findObject(new UiSelector().resourceId(id("txt_calc_display")));
-        assertEquals(result.getText(), s);
+        assertEquals(s, result.getText());
     }
 }
